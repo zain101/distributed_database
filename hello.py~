@@ -1,0 +1,113 @@
+from flask import Flask, render_template, session, redirect, url_for,request,Response
+from flask import request
+from flask import Response
+from flask.ext.bootstrap import Bootstrap
+from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField ,PasswordField ,TextField
+from wtforms.validators import Required , Email
+from flask import flash
+from flaskext.mysql import MySQL
+# from converter import convert_to_sql
+#import nltk
+from flask.views import View
+
+import threading
+import subprocess
+import os
+import sys
+		
+
+
+
+
+# ...
+
+
+
+app = Flask(__name__)
+bootstrap = Bootstrap(app)
+app.config['SECRET_KEY'] = '\xd0\xfd\x93\x19u\x98\xa3\xe04\x95S\x0e\xb7\x80\x85\x08\xbf\x07\x199\x0e]\xe5\xfc'
+
+mysql = MySQL()
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'root'
+app.config['MYSQL_DATABASE_DB'] = 'bookdealer'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+mysql.init_app(app)
+ 
+
+@app.route('/')
+def index():
+	
+	return render_template('index.html')
+
+@app.route('/login')
+def login():
+	return render_template('login.html')
+
+@app.route('/register')
+def register():
+	if request.method=='POST':
+ 		username = request.form.get('username')	
+		password = request.form.get('password')
+		location = request.form.get('location')
+            		
+	if not name or len(name) is 0 or not password or not location:
+		return render_template('user.html', output="Invalid Data")
+	else:
+     		conn = mysql.connect()
+			cursor =conn.cursor()
+			a = cursor.execute("select * from myindex where username="+usernamme) #sql3.py
+			print a
+			hv=cursor.fetchall()
+			if hv:
+				return render_template('register.html', output="User already exist")
+			
+			conn.commit()
+					output= hv
+			num_fields = len(cursor.description)
+			headers = [i[0] for i in cursor.description]
+			print headers, output
+			return render_template('user.html', output=output,  headers=headers)
+
+	return render_template('register.html')
+
+@app.route('/profile')
+def profile():
+	return render_template('profile.html')
+
+
+@app.route('/User' ,methods=['GET', 'POST'])
+def User():
+
+	 headers = ['Username','password']
+	 name = None
+	 output = []			
+	 if request.method=='POST':
+ 	       name = request.form.get('Query')
+   	 if not name or len(name) is 0:
+   	        return render_template('user.html', output="Invalid Query")
+   	 else:
+     	        conn = mysql.connect()
+		cursor =conn.cursor()
+		cursor.execute("select * from Author") #sql3.py
+		hv=cursor.fetchall()
+		conn.commit()
+                output= hv
+		num_fields = len(cursor.description)
+		headers = [i[0] for i in cursor.description]
+		print headers, output
+		return render_template('user.html', output=output,  headers=headers)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+	return render_template('500.html'), 500
+
+
+if __name__== '__main__':
+	app.run(debug = True)

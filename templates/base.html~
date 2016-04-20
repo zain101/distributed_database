@@ -1,0 +1,52 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{ super() }}
+<link rel="shortcut icon" href="{{ url_for('static', filename= 'favicon.ico') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename= 'favicon.ico') }}" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+{% endblock %}
+{% block title  %} PYConnect-{zain101}{% endblock %}
+
+{% block navbar %}
+<div class="navbar-inverse navbar-fixed-top navbar" role="navigation" style="-webkit-backface-visibility: hidden;" >
+    <div class="container">
+        <div class=" navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="/"><span> <img src="../static/brand.ico" />PYConnect<small style="font-size: xx-small;">beta</small></span></a>
+        </div>
+        <div  id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-left">
+              
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+               
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{%block content %}
+<br /><br /><br /><br />
+<div class="container">
+  
+    {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+
+{% endblock %}

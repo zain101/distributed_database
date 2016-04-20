@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}NLP To Create SQL Query{% endblock %}
+{% block page_content %}
+  
+<br /><br /><br /><br /><br />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+   
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+	 <link href="static/css/table.css" rel="stylesheet">
+    <link href="static/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="../static/css/signup.css" rel="stylesheet">
+    <script src="../static/js/jquery-1.11.2.js"></script>
+    <script src="../static/js/signUp.js"></script>
+<style type="text/css">
+	body {
+    margin: 0;
+}    
+#wrapper {
+     width: 100%;
+     margin: 0 auto;
+}
+
+#leftcolumn {
+     width: 500px;
+     background-color: #ffffcc;
+      margin: 2 auto;
+      float: left;
+    min-height: 450px;
+    box-shadow: 10px 10px 5px #888888;
+    text-align: center;
+}
+#rightcolumn {
+     width: 500px;
+     background-color: #ffe5cc;
+      float: right;
+    min-height: 450px;
+    box-shadow: 10px 10px 5px #888888;
+    text-align: center;
+}
+
+#index{
+background-color: #ffe6e6;	
+box-shadow: 10px 10px 5px #888888;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #99ff99;
+    color: white;
+}
+</style>
+   
+  </head>
+
+  <body>
+
+    
+
+ <div  class="row marketing">
+
+<div align="center" id ="index">
+       
+
+	<br /><br />
+	<h1>Indexer Database</h1>
+	<table border=1>
+	<tr>
+	{% for row in headers_indexer%}
+	<theader>
+		<th>{{row}}</th>
+	</theader>
+	{% endfor %}
+	</tr>
+	<tbody>
+	   
+		{% for row in output_indexer %}
+		<tr>
+			{% for i in row %}
+	        		<td> {{ i }} </td>
+			{% endfor %} 
+			
+		</tr>
+		{% endfor %} 
+
+	     
+	</tbody>
+	</table>
+<br /><br /><br /><br />
+          
+</div>
+<br /><br /><br /><br />
+<div  id="wrapper">
+<div   id="leftcolumn"> 
+	
+<h1>First Database</h1>
+	<table border=1 align="center">
+	<tr>
+	{% for row in headers_first%}
+	<theader>
+		<th>{{row}}</th>
+	</theader>
+	{% endfor %}
+	</tr>
+	<tbody>
+	   
+		{% for row in output_first %}
+		<tr>
+			{% for i in row %}
+	        		<td> {{ i }} </td>
+			{% endfor %} 
+			
+		</tr>
+		{% endfor %} 
+
+	     
+	</tbody>
+	</table>
+
+</div>
+<div id="rightcolumn">
+	
+<h1>Second Database</h1>
+		<table border=1 align="center">
+		<tr>
+		{% for row in headers_second%}
+		<theader>
+			<th>{{row}}</th>
+		</theader>
+		{% endfor %}
+		</tr>
+		<tbody>
+		   
+			{% for row in output_second %}
+			<tr>
+				{% for i in row %}
+		        		<td> {{ i }} </td>
+				{% endfor %} 
+				
+			</tr>
+			{% endfor %} 
+
+		     
+		</tbody>
+		</table>
+</div>
+</div>
+</div>
+
+
+<br /><br /><br /><br />
+      <footer class="footer">
+        <p>&copy; AIKTC</p>
+      </footer>
+
+    </div>
+{% endblock %}
+  </body>
+</html>
+

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{%block content %}
+<br /><br /><br /><br />
+<div class="container">
+<h1>Register</h1><br /><br />
+    {% block page_content %}
+		<div class="col-md-4">
+                <form class="form" action="/register" method="POST">
+		<p><h3>Username:</h3> 
+              <input type="text" name="name"  class="form-control" placeholder="Unique Username" required autofocus>
+		</p>
+		<p><h3>password: </h3>
+              <input type="text" name="password"  class="form-control" placeholder="Password" required autofocus>
+		</p>
+		<p><h3>Location: </h3>
+              <input type="text" name="location"  class="form-control" placeholder="Where you live" required autofocus>
+		</p>
+              <input class="btn btn-lg btn-success" role="button" type="submit" value="GO"/>
+                    <!---<input class="btn btn-lg btn-success" role="button" type="submit" value="SQL"/>-->
+                </form>
+ 		</div>
+    {% endblock %}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+{% endblock %}
+
